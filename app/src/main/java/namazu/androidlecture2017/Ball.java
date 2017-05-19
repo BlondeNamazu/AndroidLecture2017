@@ -5,6 +5,7 @@ import android.graphics.Color;
 import android.graphics.Paint;
 import android.graphics.Rect;
 import android.util.Log;
+import android.widget.TextView;
 
 import java.io.Console;
 
@@ -41,14 +42,17 @@ public class Ball {
         paint = new Paint();
 
     }
-    public void onDraw(Canvas canvas){
+    public void onDraw(Canvas canvas,String[] str){
         paint.setColor(Color.BLUE);
         paint.setStyle(Paint.Style.STROKE);
-        canvas.drawRect(new Rect((int)minX-r,(int)minY-r,(int)maxX+r,(int)maxY+r),paint);
+        canvas.drawRect(new Rect((int) minX - r, (int) minY - r, (int) maxX + r, (int) maxY + r), paint);
         paint.setColor(Color.GREEN);
         paint.setStyle(Paint.Style.FILL_AND_STROKE);
         canvas.drawCircle(x, y, r, paint);
-        Log.d("Poop", ":poop");
+        paint.setColor(Color.BLACK);
+        if(str[0]==null) return;
+        paint.setTextSize(30);
+        for(int i=0;i<4;i++)canvas.drawText(str[i],minX,(i+2)*minY,paint);
         //Log.d("WhereIsBall","x="+x+",y="+y);
     }
     public void move(){
